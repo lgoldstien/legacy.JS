@@ -1,12 +1,25 @@
-function Dialogue(title,contents,buttons) {
+function App(){
+    return {
+        assert: function(a, b, message) {
+            if (a !== b) {
+                throw message || "Assertion Failed";
+            }
+        }
+    }
+}
+
+function Dialogue(title,contents,buttons){
 
     var Title;
     var Contents;
     var Buttons;
+    var ID;
+    var app = new App();
 
     /** Setters */
-    function SetTitle(){
-
+    function SetTitle(title){
+        Title = title;
+        app.assert(Title, title, "Title not set correctly.");
     }
     function SetButtons(){
 
@@ -41,6 +54,7 @@ function Dialogue(title,contents,buttons) {
     }
 
     Init();
+
     /** Publicly Exposed Methods */
     return {
         show: function(){
